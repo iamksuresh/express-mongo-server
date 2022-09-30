@@ -1,11 +1,11 @@
 # Express-Excel Upload Service
 ## Rest API using express to upload and save excel file
 
-#### Live demo - https://iamksuresh.github.io/trading_platform/
-#### readme - https://github.com/iamksuresh/trading_platform
+#### readme - https://github.com/iamksuresh/express-mongo-server#readme
 
 #### screenshots
--   Folder structure - 
+-   Folder structure - https://github.com/iamksuresh/express-mongo-server/blob/main/screenshots/folder_structure.png
+
 
 ## Features
 - Express based Rest API service written in Typescript
@@ -20,7 +20,8 @@
 -   No schema validation is implemented except all fields are mandatory
 -   mongo cloud is used to connect. Any mongo db uri can be used. To be passed in env variable - `MONGO_DB_URI`
 -   For Post API call , form-data value for upload excel API should be `file`
-    -   Refer screenshot here -
+    -   Refer screenshot here - https://github.com/iamksuresh/express-mongo-server/blob/main/screenshots/postman.png
+    
 
 
 ## Technology stack
@@ -33,7 +34,7 @@
 
 ## Installation
 -  Pre-requisite - [Node.js](https://nodejs.org/) latest. 
--  git clone 
+-  git clone https://github.com/iamksuresh/express-mongo-server.git
 -  Tested in node 16.15.0 , npm 8.9.0 , chrome browser
 
 ```sh
@@ -51,5 +52,6 @@ npm i (if not already done)
 npm test
 ```
 ## Postman collection
-- Access Postman collection here - 
-- Test excel files for Postman can be uploaded from here - 
+- Access Postman collection here - https://github.com/iamksuresh/express-mongo-server/tree/main/postman-collection
+
+- Sample excel files for Postman tests can be uploaded from here - https://github.com/iamksuresh/express-mongo-server/tree/main/postman-collection/sample-excel-files
