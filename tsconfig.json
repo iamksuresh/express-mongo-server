@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    "esModuleInterop": true,
+    "module": "commonjs",
+    "outDir": "./dist",
+    "declaration": true,
+    "allowJs": true,
+    "forceConsistentCasingInFileNames": true,
+    "strictPropertyInitialization": false,
+    "experimentalDecorators": true,
+    "noImplicitReturns": true,
+    "strict": true,
+    "noUnusedLocals": true,
+    "removeComments": true,
+    "sourceMap": true,
+    "target": "es2018",
+    "lib": ["es2018", "esnext.asynciterable"],
+    "typeRoots": ["./types", "./node_modules/@types"],
+    "skipLibCheck": true
+  },
+  "include": ["src/**/*", "test/**/*", "src/common"],
+  "exclude": ["node_modules"]
+}

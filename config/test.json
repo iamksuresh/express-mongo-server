@@ -1,0 +1,8 @@
+{
+  "module": {
+    "name": "express-mongo-backend"
+  },
+  "logs": {
+    "logLevel": 7
+  }
+}

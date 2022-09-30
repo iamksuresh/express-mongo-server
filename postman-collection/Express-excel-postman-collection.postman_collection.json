@@ -1,0 +1,18 @@
+{
+	"info": {
+		"_postman_id": "d54694e2-45b2-4a37-a2ea-4f1596d19e8f",
+		"name": "Express-excel-postman-collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "17728275"
+	},
+	"item": [
+		{
+			"name": "Excel upload",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		}
+	]
+}
