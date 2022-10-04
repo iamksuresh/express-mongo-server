@@ -19,6 +19,7 @@
 -   Same Mongo db instance is used for running test cases.
 -   No schema validation is implemented except all fields are mandatory
 -   mongo cloud is used to connect. Any mongo db uri can be used. To be passed in env variable - `MONGO_DB_URI`
+    -- For the purpose of this assignment, I have added it to .env file
 -   For Post API call , form-data value for upload excel API should be `file`
     -   Refer screenshot here - https://github.com/iamksuresh/express-mongo-server/blob/main/screenshots/postman.png
     
@@ -44,6 +45,7 @@ npm start
 ```
 - Server will start at port 8080
 - NOTE : add mongodb uri to `MONGO_DB_URI` variable in .env file. 
+- Any mongoDB quering tool like - mongoDB compass , Studio 3T can be used to view tables.
 
 ## Testing
 ```sh
