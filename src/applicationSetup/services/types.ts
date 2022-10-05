@@ -8,5 +8,5 @@ export const types = {
   Lodash: Symbol.for("lodash"),
   IRouteHandlerService: Symbol.for("IRouteHandlerService"),
   IErrorHandlerService: Symbol.for("IErrorHandlerService"),
-  DbConnection:Symbol.for("DbConnection"),
+  DbConnection: Symbol.for("DbConnection"),
 };

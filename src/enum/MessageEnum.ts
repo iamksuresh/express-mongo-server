@@ -4,5 +4,5 @@ export enum MessageEnum {
   SERVER_ERROR = "Server encountered error",
   ITEMS_UPLOADED_SUCESS = "items uploaded successfully",
   MISSING_VALUES = "invalid / missing values",
-  DB_USER_CREATION_ERROR="error in creating user"
+  DB_USER_CREATION_ERROR = "error in creating user",
 }

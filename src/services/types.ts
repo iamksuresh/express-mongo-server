@@ -1,3 +1,3 @@
 export const types = {
-    IUploadService: Symbol.for("IUploadService"),
-}
+  IUploadService: Symbol.for("IUploadService"),
+};

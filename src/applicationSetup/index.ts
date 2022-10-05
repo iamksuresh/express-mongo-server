@@ -41,14 +41,18 @@ export { IReflectionService } from "./services/IReflectionService";
 export { BaseService } from "./services/implementation/BaseService";
 
 let _container: Container = iocContainer;
-export const configureCommon = async (appContainer?: Container): Promise<Container> => {
+export const configureCommon = async (
+  appContainer?: Container
+): Promise<Container> => {
   _container = appContainer || iocContainer;
 
   // Register common services to container
   configureCommonServices(_container);
 
   // load environment variables
-  const configService = _container.get<IConfigService>(commonServiceTypes.IConfigService);
+  const configService = _container.get<IConfigService>(
+    commonServiceTypes.IConfigService
+  );
   await configService.init();
 
   // load common repo class
@@ -67,7 +71,9 @@ export function registerController(...controllerClasses: any[]) {
 }
 
 export function registerMongoDB(uri: string) {
-  const configService = _container.get<IConfigService>(commonServiceTypes.IConfigService);
+  const configService = _container.get<IConfigService>(
+    commonServiceTypes.IConfigService
+  );
   const dbService = _container.get<any>(commonServiceTypes.DbConnection);
 
   let dbUri = configService.getByKey(uri);
@@ -104,8 +110,12 @@ export async function initAsync(app: Application, container?: Container) {
 
   try {
     // init express
-    routeHandlerService = instanceContainer.get<IRouteHandlerService>(commonServiceTypes.IRouteHandlerService);
-    logService = instanceContainer.get<ILogService>(commonServiceTypes.ILogService);
+    routeHandlerService = instanceContainer.get<IRouteHandlerService>(
+      commonServiceTypes.IRouteHandlerService
+    );
+    logService = instanceContainer.get<ILogService>(
+      commonServiceTypes.ILogService
+    );
     controllers = instanceContainer.getAll(MetaDataEnum.Controller);
   } catch (err) {
     controllers = [];
@@ -126,7 +136,10 @@ let _isErrorHandlerInitialized = false;
 export function registerErrorHandler(app: Application, container?: Container) {
   const instanceContainer = container || iocContainer;
   if (_isErrorHandlerInitialized === false) {
-    const errorHandler: IErrorHandlerService = instanceContainer.get<IErrorHandlerService>(commonServiceTypes.IErrorHandlerService);
+    const errorHandler: IErrorHandlerService =
+      instanceContainer.get<IErrorHandlerService>(
+        commonServiceTypes.IErrorHandlerService
+      );
     app.use(errorHandler.handle.bind(errorHandler));
     _isErrorHandlerInitialized = true;
   }

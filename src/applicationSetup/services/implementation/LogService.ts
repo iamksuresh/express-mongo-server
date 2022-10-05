@@ -54,7 +54,9 @@ export class LogService implements ILogService {
 
   private _getLogLevel(): number {
     if (this._logLevel === undefined) {
-      const logLevel = this._configService.getByKey(ConfigKeyEnum.Log.logLevel) || LogLevelEnum.Error;
+      const logLevel =
+        this._configService.getByKey(ConfigKeyEnum.Log.logLevel) ||
+        LogLevelEnum.Error;
       this._logLevel = parseInt(logLevel, 10);
     }
     return this._logLevel;

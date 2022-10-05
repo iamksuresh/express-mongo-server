@@ -66,6 +66,4 @@ export class ReflectionService implements IReflectionService {
       return Reflect.getMetadata(key, target);
     }
   }
-
-
 }

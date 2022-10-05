@@ -21,7 +21,14 @@ export class RouteHandlerService implements IRouteHandlerService {
   @inject(commonServiceTypes.Lodash)
   private readonly _lodash: any;
 
-  handle(controller: any, handler: (request: Request, response: Response, nextFunction: NextFunction) => any): any {
+  handle(
+    controller: any,
+    handler: (
+      request: Request,
+      response: Response,
+      nextFunction: NextFunction
+    ) => any
+  ): any {
     /**
      * PreProcess/ PostProcess Request interceptors
      * Validate Request params
@@ -83,31 +90,51 @@ export class RouteHandlerService implements IRouteHandlerService {
   configureControllers(app: Application, controllers: any[]): void {
     if (controllers && controllers.length > 0) {
       const unitializedControllers =
-        controllers.filter((controller: any) => controller.__controller__attached__ === undefined) || [];
+        controllers.filter(
+          (controller: any) => controller.__controller__attached__ === undefined
+        ) || [];
       unitializedControllers.forEach((controller: any) => {
-        const controllerClass = this._reflectionService.objectToConstructor(controller);
-        const controllerBasePath = this._reflectionService.getMetaData(controllerClass, MetaDataEnum.Controller);
+        const controllerClass =
+          this._reflectionService.objectToConstructor(controller);
+        const controllerBasePath = this._reflectionService.getMetaData(
+          controllerClass,
+          MetaDataEnum.Controller
+        );
         if (controllerBasePath) {
-          const actions: ActionMethodInfo[] = this._reflectionService.getMetaData(
-            controller,
-            MetaDataEnum.ControllerAction,
-          );
+          const actions: ActionMethodInfo[] =
+            this._reflectionService.getMetaData(
+              controller,
+              MetaDataEnum.ControllerAction
+            );
           if (actions && actions.length > 0) {
             const controllerName =
-              this._reflectionService.getMetaData(controllerClass, MetaDataEnum.Name) || controllerClass.name;
-            const isPublic = this._reflectionService.getMetaData(controllerClass, MetaDataEnum.IsPublic);
-            const router = Router();
-            const controllerLevelMiddleware = this._reflectionService.getMetaData(
+              this._reflectionService.getMetaData(
+                controllerClass,
+                MetaDataEnum.Name
+              ) || controllerClass.name;
+            const isPublic = this._reflectionService.getMetaData(
               controllerClass,
-              MetaDataEnum.ExpressMiddleware,
+              MetaDataEnum.IsPublic
             );
+            const router = Router();
+            const controllerLevelMiddleware =
+              this._reflectionService.getMetaData(
+                controllerClass,
+                MetaDataEnum.ExpressMiddleware
+              );
             if (controllerLevelMiddleware) {
               app.use(controllerBasePath, controllerLevelMiddleware, router);
             } else {
               app.use(controllerBasePath, router);
             }
             actions.forEach((action: any) => {
-              this._createControllerActionPath(router, controller, action, controllerName, isPublic);
+              this._createControllerActionPath(
+                router,
+                controller,
+                action,
+                controllerName,
+                isPublic
+              );
             });
           }
         }
@@ -121,7 +148,7 @@ export class RouteHandlerService implements IRouteHandlerService {
     controller: any,
     action: ActionMethodInfo,
     controllerName: string,
-    isControllerPublic?: boolean,
+    isControllerPublic?: boolean
   ) {
     /**
      * register route for each controller
@@ -132,14 +159,27 @@ export class RouteHandlerService implements IRouteHandlerService {
     if (actionName) {
       let handler: any = controller[actionName];
       if (this._reflectionService.isFunction(handler)) {
-        const middlewares = this._reflectionService.getMetaData(controller, MetaDataEnum.ExpressMiddleware, actionName);
+        const middlewares = this._reflectionService.getMetaData(
+          controller,
+          MetaDataEnum.ExpressMiddleware,
+          actionName
+        );
         const customActionName =
-          this._reflectionService.getMetaData(controller, MetaDataEnum.Name, actionName) || actionName;
+          this._reflectionService.getMetaData(
+            controller,
+            MetaDataEnum.Name,
+            actionName
+          ) || actionName;
         let isPublic = true;
         if (isControllerPublic === true) {
           isPublic = true;
         } else {
-          isPublic = this._reflectionService.getMetaData(controller, MetaDataEnum.IsPublic, actionName) || true;
+          isPublic =
+            this._reflectionService.getMetaData(
+              controller,
+              MetaDataEnum.IsPublic,
+              actionName
+            ) || true;
         }
         handler = handler.bind(controller);
         handler._actionName = actionName;
@@ -151,19 +191,31 @@ export class RouteHandlerService implements IRouteHandlerService {
 
         if (action.method === HttpMethodEnum.Get) {
           if (middlewares) {
-            router.get(action.path, middlewares, this.handle(controller, handler));
+            router.get(
+              action.path,
+              middlewares,
+              this.handle(controller, handler)
+            );
           } else {
             router.get(action.path, this.handle(controller, handler));
           }
         } else if (action.method === HttpMethodEnum.Post) {
           if (middlewares) {
-            router.post(action.path, middlewares, this.handle(controller, handler));
+            router.post(
+              action.path,
+              middlewares,
+              this.handle(controller, handler)
+            );
           } else {
             router.post(action.path, this.handle(controller, handler));
           }
         } else if (action.method === HttpMethodEnum.Put) {
           if (middlewares) {
-            router.put(action.path, middlewares, this.handle(controller, handler));
+            router.put(
+              action.path,
+              middlewares,
+              this.handle(controller, handler)
+            );
           } else {
             router.put(action.path, this.handle(controller, handler));
           }

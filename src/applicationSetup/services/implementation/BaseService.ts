@@ -1,5 +1,10 @@
 import { inject, injectable } from "inversify";
-import { commonServiceTypes, ILogService, IReflectionService, IUtilService } from "../..";
+import {
+  commonServiceTypes,
+  ILogService,
+  IReflectionService,
+  IUtilService,
+} from "../..";
 
 @injectable()
 export abstract class BaseService {

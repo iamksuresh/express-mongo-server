@@ -6,9 +6,11 @@ import { ActionMethodInfo } from "./ActionMethodInfo";
 
 export function ControllerAction(info: ActionMethodInfo) {
   return (target: any, property: any) => {
-    const actions = Reflect.getMetadata(MetaDataEnum.ControllerAction, target) || [];
+    const actions =
+      Reflect.getMetadata(MetaDataEnum.ControllerAction, target) || [];
     const oldRecord = actions.find(
-      (method: ActionMethodInfo) => method.method === info.method && method.path === info.path,
+      (method: ActionMethodInfo) =>
+        method.method === info.method && method.path === info.path
     );
     if (!oldRecord) {
       info.actionName = property;

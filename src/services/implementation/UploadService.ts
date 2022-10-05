@@ -1,6 +1,10 @@
 import { inject, injectable } from "inversify";
 import readXlsxFile, { Row } from "read-excel-file/node";
-import { BaseService, commonServiceTypes, ILogService } from "../../applicationSetup";
+import {
+  BaseService,
+  commonServiceTypes,
+  ILogService,
+} from "../../applicationSetup";
 import { userDto } from "../dto/userDto";
 import { IUploadService } from "../IUploadService";
 import { types as repoTypes } from "../../repositories/types";
@@ -37,13 +41,24 @@ export class UploadService extends BaseService implements IUploadService {
     fsExtra.emptyDirSync(path.resolve(CommonEnum.EXCEL_FILE_PATH));
   };
 
-  private _uploadServiceResponse = (invalidItems: userDto[]): Promise<excelResponseDto> => {
+  private _uploadServiceResponse = (
+    invalidItems: userDto[]
+  ): Promise<excelResponseDto> => {
     if (invalidItems.length > 0) {
-      return Promise.resolve({ reason: MessageEnum.MISSING_VALUES, payload: invalidItems });
-    } else return Promise.resolve({ reason: MessageEnum.ITEMS_UPLOADED_SUCESS, payload: [] });
+      return Promise.resolve({
+        reason: MessageEnum.MISSING_VALUES,
+        payload: invalidItems,
+      });
+    } else
+      return Promise.resolve({
+        reason: MessageEnum.ITEMS_UPLOADED_SUCESS,
+        payload: [],
+      });
   };
 
-  private _readXlsFile = async (filePath: string): Promise<{ validItems: userDto[]; invalidItems: userDto[] }> => {
+  private _readXlsFile = async (
+    filePath: string
+  ): Promise<{ validItems: userDto[]; invalidItems: userDto[] }> => {
     let validItems: userDto[] = [];
     let invalidItems: userDto[] = [];
 

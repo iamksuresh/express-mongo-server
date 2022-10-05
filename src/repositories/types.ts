@@ -1,3 +1,3 @@
 export const types = {
-    IUserRepository: Symbol.for("IUserRepository"),
-}
+  IUserRepository: Symbol.for("IUserRepository"),
+};

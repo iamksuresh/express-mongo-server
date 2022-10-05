@@ -18,7 +18,6 @@ export class UserRepository implements IUserRepository {
       session.startTransaction();
       dbUserList = await User.insertMany(userlist, { session });
       await session.commitTransaction();
-      
     } catch (e) {
       await session.abortTransaction();
       throw MessageEnum.DB_USER_CREATION_ERROR;

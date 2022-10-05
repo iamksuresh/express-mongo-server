@@ -1,5 +1,5 @@
 export class userDto {
-    username ?: string;
-    university? : string;
-    email?: string;
+  username?: string;
+  university?: string;
+  email?: string;
 }

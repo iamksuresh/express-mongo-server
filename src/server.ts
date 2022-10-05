@@ -8,7 +8,7 @@ import { App } from "./app";
 import { registerMongoDB } from "./applicationSetup";
 
 const app = express();
-const MONGO_DB = 'MONGO_DB_URI';
+const MONGO_DB = "MONGO_DB_URI";
 
 const initServer = async () => {
   app.use(bodyParser.json({ limit: "200mb" }));

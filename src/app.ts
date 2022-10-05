@@ -8,10 +8,12 @@ import { configureRepositories } from "./repositories/ioc";
 import { configureServices } from "./services/ioc";
 
 export class App extends ApplicationBase {
-  async setupIoC(expressApp: express.Application): Promise<express.Application> {
-    await configureRepositories(iocContainer);    
+  async setupIoC(
+    expressApp: express.Application
+  ): Promise<express.Application> {
+    await configureRepositories(iocContainer);
     await configureServices(iocContainer);
-    registerController( UploadController);
+    registerController(UploadController);
     return expressApp;
   }
 }

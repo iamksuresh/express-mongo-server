@@ -18,7 +18,7 @@ import { CommonEnum } from "../enum/CommonEnum";
 import { MessageEnum } from "../enum/MessageEnum";
 import UploadMiddleware from "../middleware/UploadMiddleware";
 import { IUploadService } from "../services/IUploadService";
-import { types as appServiceTypes } from '../services/types'
+import { types as appServiceTypes } from "../services/types";
 import { BaseController } from "./BaseController";
 import { UploadExcelVM } from "./viewModel/uploadExcelVM";
 
@@ -30,20 +30,20 @@ export class UploadController extends BaseController {
   private readonly _logservice: ILogService;
 
   @inject(appServiceTypes.IUploadService)
-  private readonly _uploadService : IUploadService
+  private readonly _uploadService: IUploadService;
 
   @ControllerAction({ method: HttpMethodEnum.Post, path: "/excel" })
   @Name("excel")
   @ValidateRequestParams(UploadExcelVM)
   async excelController(req: Request, res: Response) {
     const params = this.params(req);
-    this._logservice.info('excelController');
+    this._logservice.info("excelController");
 
-      if (params?.originalname == undefined) {
-        this.throwError({reason : MessageEnum.NO_FILE})
-      }
+    if (params?.originalname == undefined) {
+      this.throwError({ reason: MessageEnum.NO_FILE });
+    }
 
-      let path = CommonEnum.EXCEL_FILE_PATH + params.originalname;
-      return this._uploadService.uploadExcel(path);
+    let path = CommonEnum.EXCEL_FILE_PATH + params.originalname;
+    return this._uploadService.uploadExcel(path);
   }
 }

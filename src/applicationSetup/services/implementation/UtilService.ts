@@ -44,8 +44,16 @@ export class UtilService implements IUtilService {
       parameters = Object.assign(parameters, request.query || {});
 
       const httpMethod = request.method.toLowerCase();
-      if (httpMethod === "post" || httpMethod === "put" || httpMethod === "delete") {
-        parameters = Object.assign(parameters, request.body || {}, request.file || {});
+      if (
+        httpMethod === "post" ||
+        httpMethod === "put" ||
+        httpMethod === "delete"
+      ) {
+        parameters = Object.assign(
+          parameters,
+          request.body || {},
+          request.file || {}
+        );
       }
 
       // url params for all methods

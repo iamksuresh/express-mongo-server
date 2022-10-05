@@ -102,12 +102,19 @@ export class WinstonService {
       return format("%j", info);
     });
 
-    console.log('process.env.LOG_LEVEL ', process.env.LOG_LEVEL)
+    console.log("process.env.LOG_LEVEL ", process.env.LOG_LEVEL);
     this.winston = winston.createLogger({
-      level: process.env.LOG_LEVEL ? process.env.LOG_LEVEL : process.env.NODE_ENV === "production" ? "info" : "debug",
+      level: process.env.LOG_LEVEL
+        ? process.env.LOG_LEVEL
+        : process.env.NODE_ENV === "production"
+        ? "info"
+        : "debug",
       transports: [
         new winston.transports.Console({
-          format: winston.format.combine(winston.format.timestamp(), logConsoleFormat),
+          format: winston.format.combine(
+            winston.format.timestamp(),
+            logConsoleFormat
+          ),
         }),
       ],
     });
@@ -129,11 +136,18 @@ export class WinstonService {
     return this._log("warn", message, payload);
   }
 
-  error(message: Error | string, payload?: Error | { [key: string]: any }): WinstonService {
+  error(
+    message: Error | string,
+    payload?: Error | { [key: string]: any }
+  ): WinstonService {
     return this._log("error", JSON.stringify(message), payload);
   }
 
-  private _log(level: string, message: string, payload?: { [key: string]: any }): WinstonService {
+  private _log(
+    level: string,
+    message: string,
+    payload?: { [key: string]: any }
+  ): WinstonService {
     logEnabled &&
       this.winston.log(level, message, {
         ...WinstonService.GLOBAL_META_DATA,

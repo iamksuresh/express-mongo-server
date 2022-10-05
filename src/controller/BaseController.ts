@@ -1,7 +1,11 @@
 import { injectable, inject } from "inversify";
 import { Request } from "express";
 
-import { ILogService, IUtilService, commonServiceTypes } from "../applicationSetup";
+import {
+  ILogService,
+  IUtilService,
+  commonServiceTypes,
+} from "../applicationSetup";
 
 @injectable()
 export abstract class BaseController {
@@ -18,7 +22,7 @@ export abstract class BaseController {
     return this._utilService.getRequestParams(request);
   }
 
-  throwError(errObj:any): any {
+  throwError(errObj: any): any {
     throw errObj;
   }
 }

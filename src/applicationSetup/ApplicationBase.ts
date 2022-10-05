@@ -8,7 +8,11 @@ import { ILogService } from "./services/ILogService";
 import { types as commonServiceTypes } from "./services/types";
 import { IConfigService } from "./services/IConfigService";
 
-import { configureCommon, initAsync as initCommon, registerErrorHandler } from ".";
+import {
+  configureCommon,
+  initAsync as initCommon,
+  registerErrorHandler,
+} from ".";
 
 export abstract class ApplicationBase {
   protected readonly _container: Container;
@@ -21,7 +25,9 @@ export abstract class ApplicationBase {
     this._container = container || iocContainer;
   }
 
-  abstract setupIoC(expressApp: express.Application): Promise<express.Application>;
+  abstract setupIoC(
+    expressApp: express.Application
+  ): Promise<express.Application>;
 
   async initExternal(): Promise<express.Application> {
     /**
@@ -39,7 +45,9 @@ export abstract class ApplicationBase {
     return app;
   }
 
-  private async _loadApplicationContainers(app: express.Application): Promise<void> {
+  private async _loadApplicationContainers(
+    app: express.Application
+  ): Promise<void> {
     /**
      * register Application controllers to IOC
      * Register DB listeners
@@ -66,9 +74,13 @@ export abstract class ApplicationBase {
 
     await initCommon(expressApp, container);
 
-    const configService = this._container.get<IConfigService>(commonServiceTypes.IConfigService);
+    const configService = this._container.get<IConfigService>(
+      commonServiceTypes.IConfigService
+    );
 
-    const logService: ILogService = container.get<ILogService>(commonServiceTypes.ILogService);
+    const logService: ILogService = container.get<ILogService>(
+      commonServiceTypes.ILogService
+    );
     return new Promise((resolve: any) => {
       (function _init() {
         try {
